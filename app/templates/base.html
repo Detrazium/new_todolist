@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My TODO</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='baser.css') }}">
+</head>
+<body>
+<header class="header_base">
+    <div class="head_container methods"><h4>head_block</h4></div>
+    <div class="head_container methods"><h4>head_block</h4></div>
+    <div class="head_container methods"><h4>head_block</h4></div>
+    <div class="head_container methods"><h4>head_block</h4></div>
+    <div class="head_container methods"><h4>head_block</h4></div>
+</header>
+<div>
+    {% block content %}
+    {% endblock %}
+</div>
+
+</body>
+</html>
