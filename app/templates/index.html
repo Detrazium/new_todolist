@@ -2,15 +2,35 @@
 {% block title %}{% endblock %}
 {% block content %}
     <div class="body_cont_in">
-        <div class="body_cont_in cont_page">
-            <div class="body_cont_in list_type">
-                <h1>Type add</h1>
-                <div class="body_cont_in list_add lab_inp">label_add</div>
-                <div class="body_cont_in list_add btn">btn_add</div>
-            </div>
-            <div class="body_cont_in list_todo"><h1>List all types</h1></div>
-            <div class="body_cont_in list_find"><h1>FIND</h1></div>
-            <div class="body_cont_in list_delete"><h1>DELETE</h1></div>
+        <div class="body_cont_in control_page">
+            <form method="GET">
+                <div class="body_cont_in list_type list_todo">
+                    <h1>Type add</h1>
+                    <div class="body_cont_in list_add list_inp_Title">
+                        <input type="text" placeholder="TYPE TITLE">
+                    </div>
+
+                    <div class="body_cont_in list_add btn">
+                        <button type="submit">btn_add +</button>
+                    </div>
+                </div>
+            </form>
+            <form>
+                <div class="body_cont_in list_find">
+                    <h3>FIND</h3>
+                    <input type="text" placeholder="ID">
+                    <input type="text" placeholder="TYPE">
+                    <button type="submit"><h3>FIND</h3></button>
+                </div>
+            </form>
+            <form>
+                <div class="body_cont_in list_todo">
+                    Авто добавка форм сюда
+                    <div class="body_cont_in list_items"><h1>List all types</h1></div>
+                    <div class="body_cont_in list_change list_todo"><h2>CHANGE</h2></div>
+                    <div class="body_cont_in list_delete list_todo"><h1>DELETE</h1></div>
+                </div>
+            </form>
         </div>
     </div>
 {% endblock %}

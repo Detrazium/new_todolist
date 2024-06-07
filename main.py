@@ -1,4 +1,4 @@
-from app.webposer import core_poser
+from app.webposer_routers import core_poser
 
 def main():
 	core_poser()

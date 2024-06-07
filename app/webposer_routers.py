@@ -1,9 +1,14 @@
 from app import app
-
 from flask import render_template, request, redirect
+from app.core_db.database import contact_type_db, CON_todo_db
 
-@app.route('/')
-def homepager():
+@app.route('/', methods=["GET", "POST"])
+def typeHome():
+	ALLtype = contact_type_db().check_info_type()
+
+
+
+
 	link = request.form.get('link_type')
 	return render_template('index.html')
 
