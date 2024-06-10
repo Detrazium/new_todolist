@@ -4,7 +4,14 @@ html {
 }
 
 body {
-    height:100%
+    height:100%;
+    font-family: 'Arial', sans-serif;
+}
+.content-flexer{
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .body-content{
     height:75%;

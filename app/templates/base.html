@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>My TODO</title>
+    <title>Todo creates by Antonio</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ url_for('static', filename='baser.css') }}">
 </head>
 <body>
-<div class="body-content">
-    <header class="header_base">
-        <div id='head__circ'class="methods"></div>
-        <div class="head_container methods"><h4>head_block</h4></div>
-        <div class="head_container methods"><h4>head_block</h4></div>
-        <div class="head_container methods"><h4>head_block</h4></div>
-        <div class="head_container methods"><h4>head_block</h4></div>
-        <div class="head_container methods"><h4>head_block</h4></div>
-    </header>
-    <div class="boder_imf">
-        {% block content %}
-        {% endblock %}
+<div class="content-flexer">
+    <div class="body-content">
+        <header class="header_base">
+            <div id='head__circ'class="methods"></div>
+            <div class="head_container methods"><h4>head_block</h4></div>
+            <div class="head_container methods"><h4>head_block</h4></div>
+            <div class="head_container methods"><h4>head_block</h4></div>
+            <div class="head_container methods"><h4>head_block</h4></div>
+            <div class="head_container methods"><h4>head_block</h4></div>
+        </header>
+        <div class="boder_imf">
+            {% block content %}
+            {% endblock %}
+        </div>
     </div>
+    <footer>FOOTER</footer>
 </div>
-<footer>FOOTER</footer>
-
 </body>
 </html>

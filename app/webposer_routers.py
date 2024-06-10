@@ -5,11 +5,14 @@ from app.core_db.database import contact_type_db, CON_todo_db
 @app.route('/', methods=["GET", "POST"])
 def typeHome():
 	ALLtype = contact_type_db().check_info_type()
+	if request.method == 'POST':
+		l1 = request.form['input_id_new']
+		print(l1)
+	if request.method == 'GET':
+		pass
 
 
 
-
-	link = request.form.get('link_type')
 	return render_template('index.html')
 
 @app.route('/todo/<type>', methods=['POST', 'GET'])

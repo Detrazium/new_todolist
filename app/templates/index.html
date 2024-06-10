@@ -3,34 +3,27 @@
 {% block content %}
     <div class="body_cont_in">
         <div class="body_cont_in control_page">
-            <form method="GET">
-                <div class="body_cont_in list_type list_todo">
+            <form method="post" id="todo_inputer">
+                <div class="body_cont_in list_type list_todo" id="inputer_todo"  style="dispaly: flex;">
                     <h1>Type add</h1>
                     <div class="body_cont_in list_add list_inp_Title">
-                        <input type="text" placeholder="TYPE TITLE">
+                        <input type="text" maxlength="35" placeholder="TYPE TITLE" id="inP_todo" name='input_id_new'>
                     </div>
 
-                    <div class="body_cont_in list_add btn">
-                        <button type="submit">btn_add +</button>
-                    </div>
+                    <button type="submit">btn_add +</button>
                 </div>
             </form>
-            <form>
-                <div class="body_cont_in list_find">
+            <form method="get">
+                <div class="body_cont_in list_find" style="dispaly: flex;">
                     <h3>FIND</h3>
-                    <input type="text" placeholder="ID">
-                    <input type="text" placeholder="TYPE">
-                    <button type="submit"><h3>FIND</h3></button>
+                    <input type="text" placeholder="ID" name="input_id_find">
+                    <input type="text" placeholder="TYPE" name="input_TYPE_find">
+                    <button type="submit"><h3>FIND OF GETALL</h3></button>
                 </div>
             </form>
-            <form>
-                <div class="body_cont_in list_todo">
-                    Авто добавка форм сюда
-                    <div class="body_cont_in list_items"><h1>List all types</h1></div>
-                    <div class="body_cont_in list_change list_todo"><h2>CHANGE</h2></div>
-                    <div class="body_cont_in list_delete list_todo"><h1>DELETE</h1></div>
-                </div>
-            </form>
+            <div class="body_cont_in" id="list_todo" style="dispaly: flex;">
+            </div>
         </div>
     </div>
+    <script src="{{ url_for('static', filename= 'Typer.js') }}"></script>
 {% endblock %}
