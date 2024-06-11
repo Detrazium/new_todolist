@@ -2,9 +2,10 @@ const todoFormCreate = document.getElementById('todo_inputer');
 const New_todoInfo = document.getElementById('inP_todo');
 const todoList = document.getElementById('list_todo');
 
-function db_infoid(db_info) {
-    for (i = 1; i<Object.keys(db_info).length; i++) {
-        addType(i + "  " + db_info[i]);
+function db_infoId(db_info) {
+    console.log(db_info);
+    for (i =1; i<=Object.keys(db_info).length; i++) {
+        addType(i + ' | ' + db_info[i]);
     }
 }
 
@@ -15,9 +16,10 @@ todoFormCreate.addEventListener('submit', function (event) {
         alert('Поле типа задач при создании не может быть пустой');
         return;
     }
-    New_todoInfo.value = '';
+    New_todoInfo.values = '';
     addType(newTodo);
 });
+
 function createCheckBoxer() {
     const checkBox = document.createElement('input');
     checkBox.setAttribute('type', 'checkBox');
@@ -37,9 +39,9 @@ function addType(typer) {
     typeBox.setAttribute('class', 'body_cont_in btn')
     typeBox.style.display = 'flex';
 
-    const typeText = document.createElement('h2');
-    typeText.textContent = typer;
-    typeBox.appendChild(typeText);
+    const typeTextH2 = document.createElement('h2');
+    typeTextH2.textContent = typer;
+    typeBox.appendChild(typeTextH2);
 
     const ChBx = createCheckBoxer();
     const CreDBtn = createDeleteButton();
@@ -54,9 +56,9 @@ function addType(typer) {
     });
     ChBx.addEventListener('change', function() {
         if (this.checked) {
-            typeText.style.textDecoration = 'line-through';
+            typeTextH2.style.textDecoration = 'line-through';
         } else {
-            typeText.style.textDecoration = 'None';
+            typeTextH2.style.textDecoration = 'None';
         }
     })
 }

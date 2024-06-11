@@ -25,6 +25,27 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="{{ url_for('static', filename= 'Typer.js') }}"></script>
-    <script type="text/javascript">db_info = db_infoid({{db_info|tojson}})</script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+          integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+          crossorigin="anonymous"></script>
+<script type="text/javascript" src="{{ url_for('static', filename= 'Typer.js') }}"></script>
+<script type="text/javascript">db_info = db_infoId({{db_info|tojson}})</script>
+<script type="text/javascript">
+    $(document).on('submit','#todo_inputer',function(e)
+               {
+  console.log('hello');
+  e.preventDefault();
+  $.ajax({
+    type:'POST',
+    url:'/',
+    data:{
+      inP_todo:$("#inP_todo").val()
+    },
+    success:function()
+    {
+      console.log('saved');
+    }
+  })
+});
+</script>
 {% endblock %}
