@@ -45,12 +45,26 @@ class contact_type_db():
 			WHERE id ={id}
 			\n""")
 			self.con.commit()
-	def delete_type_db(self, id: int=None):
-		self.cur.execute(f"""
-		DELETE FROM todos_types
-		WHERE id = '{id}'
-		""")
-		self.con.commit()
+	def delete_type_db(self, delete_item):
+		item = delete_item.split(' | ')
+		print(item)
+		if len(item) < 2:
+			ii = item[0].strip()
+			self.cur.execute(f"""
+			DELETE FROM todos_types
+			WHERE type = '{ii}';
+			""")
+			self.con.commit()
+		elif len(item) == 2:
+			id = int(item[0])
+
+			self.cur.execute(f"""
+			DELETE FROM todos_types
+			WHERE id = '{id}'
+			""")
+			self.con.commit()
+		else:
+			pass
 
 
 class CON_todo_db(contact_type_db):
@@ -88,14 +102,15 @@ class CON_todo_db(contact_type_db):
 		SET title = '{title}', descriptions = {desc}
 		WHERE id = {id}
 		""")
-	def delete_todo_db(self, id: int = None):
-		if id != None:
-			self.cur.execute(f"""
-			DELETE FROM todo_list
-			WHERE id = '{id}'
-			""")
-			self.con.commit()
-		pass
+	def delete_todo_db(self, id:int = None):
+		"""Принимает ID"""
+		self.cur.execute(f"""
+					DELETE FROM todo_list
+					WHERE id = '{id}'\n
+					""")
+		self.con.commit()
+
+
 
 def main():
 	contact_type_db()

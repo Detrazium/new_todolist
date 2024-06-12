@@ -15,12 +15,14 @@ def typeHome():
 	db_methods = contact_type_db()
 	if request.method == 'POST':
 		Ntype = request.form.get('inP_todo')
-		if Ntype != '':
-			db_methods.create_type_db(Ntype)
-			print(Ntype, ' |NEW|')
-			dbItem = jsonRe(db_methods)
-	else:
-		dbItem = jsonRe(db_methods)
+		deli_item = request.form.get('delete_item')
+		if deli_item:
+			db_methods.delete_type_db(deli_item)
+		else:
+			if Ntype != '' and Ntype != None:
+				db_methods.create_type_db(Ntype)
+				print(Ntype, ' |NEW|')
+	dbItem = jsonRe(db_methods)
 	print(dbItem, ' |DB|')
 	return render_template('index.html', db_info=dbItem)
 

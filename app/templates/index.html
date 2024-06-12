@@ -13,16 +13,10 @@
                     <button type="submit"><h1>+</h1></button>
                 </div>
             </form>
-            <form method="get">
-                <div class="body_cont_in list_find" style="dispaly: flex;">
-                    <h3>Поиск</h3>
-                    <input type="text" placeholder="ID" name="input_id_find">
-                    <input type="text" placeholder="TYPE" name="input_TYPE_find">
-                    <button type="submit"><h3>Искать</h3></button>
+            <form action="/" method="post" id="todo_type_items">
+                <div class="body_cont_in" id="list_todo" style="dispaly: flex;">
                 </div>
             </form>
-            <div class="body_cont_in" id="list_todo" style="dispaly: flex;">
-            </div>
         </div>
     </div>
 <script src="https://code.jquery.com/jquery-3.5.1.js"
@@ -30,22 +24,5 @@
           crossorigin="anonymous"></script>
 <script type="text/javascript" src="{{ url_for('static', filename= 'Typer.js') }}"></script>
 <script type="text/javascript">db_info = db_infoId({{db_info|tojson}})</script>
-<script type="text/javascript">
-    $(document).on('submit','#todo_inputer',function(e)
-               {
-  console.log('hello');
-  e.preventDefault();
-  $.ajax({
-    type:'POST',
-    url:'/',
-    data:{
-      inP_todo:$("#inP_todo").val()
-    },
-    success:function()
-    {
-      console.log('saved');
-    }
-  })
-});
 </script>
 {% endblock %}
