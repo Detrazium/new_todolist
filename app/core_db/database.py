@@ -24,12 +24,21 @@ class contact_type_db():
 			self.cur.execute(f"""
 			select * from todos_types where type = '{type_todo}'
 			\n""")
+			t = self.cur.fetchall()
 		if t == ():
 			t = None
 		return t
 	def create_type_db(self, type_db: str):
 		self.cur.execute(f"""INSERT INTO todos_types(type) VALUES ('{type_db}')\n""")
 		self.con.commit()
+		self.cur.execute('''
+		SELECT *
+		FROM todos_types
+		ORDER BY id DESC
+		LIMIT 1;
+		\n''')
+		item = self.cur.fetchall()
+		return item
 	def change_type_db(self, id: int=None,  old: str=None, new: str=None):
 		if id == None:
 			self.cur.execute(f"""
@@ -47,21 +56,26 @@ class contact_type_db():
 			self.con.commit()
 	def delete_type_db(self, delete_item):
 		item = delete_item.split(' | ')
-		print(item)
 		if len(item) < 2:
 			ii = item[0].strip()
 			self.cur.execute(f"""
 			DELETE FROM todos_types
 			WHERE type = '{ii}';
-			""")
+			\n""")
 			self.con.commit()
 		elif len(item) == 2:
 			id = int(item[0])
-
+			key = item[0]+' '+item[1]
 			self.cur.execute(f"""
 			DELETE FROM todos_types
 			WHERE id = '{id}'
-			""")
+			\n""")
+			self.con.commit()
+
+			self.cur.execute(f'''
+			DELETE FROM todo_list
+			WHERE type = '{key}'
+			\n''')
 			self.con.commit()
 		else:
 			pass
@@ -92,10 +106,11 @@ class CON_todo_db(contact_type_db):
 			t = None
 		return t
 	def create_todo_db(self, title: str, descriptions: str):
-		self.cur.execute(f"""
-		INSERT INTO todo_list(title, descriptions, type) VALUES ('{title}', '{descriptions}', '{self.id_tupe}')
-		""")
-		self.con.commit()
+		if title and descriptions:
+			self.cur.execute(f"""
+			INSERT INTO todo_list(title, descriptions, type) VALUES ('{title}', '{descriptions}', '{self.id_tupe}')
+			""")
+			self.con.commit()
 	def change_todo_db(self, id, title, desc):
 		self.cur.execute(f"""
 		UPDATE todo_line

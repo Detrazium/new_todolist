@@ -2,6 +2,32 @@
 {% block title %}{% endblock %}
 {% block content %}
 <div>
-    {{type}}
+    <div>
+        <a href="/"><button class="body_cont_in containerInp" type="submit">Возврат</button></a>
+    </div>
 </div>
+<div class="body_cont_in">
+        <div class="body_cont_in control_page">
+            <form method="post" id="todo_inputer">
+                <div class="body_cont_in list_type list_todo" id="inputer_todo"  style="dispaly: flex;">
+                    <h1>{{type}}</h1>
+                    <div class="body_cont_in list_add ">
+                        <input class="body_cont_in containerInp" type="text" maxlength="25" placeholder="Название" id="inP_todo" name='input_id_new'>
+                        <input class="body_cont_in containerInp" type="text" placeholder="Опсиание" id="inP_Descripter" name='input_dis_new'>
+                    </div>
+
+                    <button type="submit"><h1>+</h1></button>
+                </div>
+            </form>
+            <a href="">
+                <button id="btnnn" class="body_cont_in content_flexer containerInp" onclick="reload_interval(1000); return false;">Обновить</button>
+            </a>
+            <form action="/" method="POST" id="todo_type_items" name="typer_data">
+
+                <div class="body_cont_in" id="list_todo" style="dispaly: flex;">
+                </div>
+            </form>
+        </div>
+</div>
+<script type="text/javascript" src="{{ url_for('static', filename='todoser.js')}}">'</script>
 {% endblock %}

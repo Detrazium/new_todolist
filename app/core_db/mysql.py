@@ -11,7 +11,7 @@ class portDB():
 			port=3306,
 			user='root',
 			password='1234',
-			database='my_todo_list'
+			database='my_todo_list',
 		)
 		self.cur = self.con.cursor()
 		self.db_check()

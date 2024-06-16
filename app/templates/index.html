@@ -5,7 +5,7 @@
         <div class="body_cont_in control_page">
             <form method="post" id="todo_inputer">
                 <div class="body_cont_in list_type list_todo" id="inputer_todo"  style="dispaly: flex;">
-                    <h1>Новый тип</h1>
+                    <h1>Type Todo</h1>
                     <div class="body_cont_in list_add list_inp_Title">
                         <input type="text" maxlength="35" placeholder="TYPE TITLE" id="inP_todo" name='input_id_new'>
                     </div>
@@ -13,16 +13,14 @@
                     <button type="submit"><h1>+</h1></button>
                 </div>
             </form>
-            <form action="/" method="post" id="todo_type_items">
+            <a href="/">
+                <button id="btnnn" style="width:10em; height:4em" class="body_cont_in content_flexer" onclick="reload_interval(1000); return false;">Обновить</button>
+            </a>
+            <form action="/" method="POST" id="todo_type_items" name="typer_data">
                 <div class="body_cont_in" id="list_todo" style="dispaly: flex;">
                 </div>
             </form>
         </div>
     </div>
-<script src="https://code.jquery.com/jquery-3.5.1.js"
-          integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-          crossorigin="anonymous"></script>
-<script type="text/javascript" src="{{ url_for('static', filename= 'Typer.js') }}"></script>
-<script type="text/javascript">db_info = db_infoId({{db_info|tojson}})</script>
-</script>
+    <script type="text/javascript" src="{{ url_for('static', filename= 'Typer.js') }}"></script>
 {% endblock %}

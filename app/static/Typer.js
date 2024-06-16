@@ -13,7 +13,6 @@ function db_infoId(db_info) {
 todoFormCreate.addEventListener('submit', function (event) {
     event.preventDefault();
     const newTodo = New_todoInfo.value;
-    console.log(newTodo.typeof)
     if (newTodo ==='') {
         alert('Поле типа задач при создании не может быть пустой');
         return;
@@ -24,9 +23,47 @@ todoFormCreate.addEventListener('submit', function (event) {
             return;
         }
     }
-    New_todoInfo.values = '';
+    $.ajax({
+    type:'POST',
+    url:'/',
+    data:{
+      inP_todo:$("#inP_todo").val()
+    },
+    success:function()
+    {
+      console.log('saved');
+    }
+  })
+    New_todoInfo.value = '';
     addType(newTodo);
 });
+function createIdArea(typer) {
+    const IDarea = document.createElement('div');
+    IDarea.setAttribute('class', 'containerInp');
+    IDarea.textContent = typer.split(" | ")[0];
+    return IDarea
+}
+function createTypeText(typer) {
+    const typehrefTotodoList = document.createElement('a')
+    console.log(typer.split("|"))
+    const typeTextH2 = document.createElement('h2');
+    typehrefTotodoList.style.marginLeft = '1em';
+    if (typer.split(" | ").length < 2) {
+        typeTextH2.textContent = typer;
+        typehrefTotodoList.addEventListener('click', function(){
+        location.reload();
+        return;
+        });
+        } else {
+        typehrefTotodoList.setAttribute('href', '/todo/'+ typer)
+        typehrefTotodoList.style.textDecoration = 'none';
+        typehrefTotodoList.style.color = 'black';
+        typeTextH2.textContent = typer.split(" | ")[1];
+        }
+    typeTextH2.setAttribute('id', typer)
+    typehrefTotodoList.appendChild(typeTextH2)
+    return typehrefTotodoList;
+}
 
 function createCheckBoxer() {
     const checkBox = document.createElement('input');
@@ -38,6 +75,7 @@ function createDeleteButton() {
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete';
     deleteButton.setAttribute('type', 'submit');
+    deleteButton.setAttribute('class', 'body_cont_in');
     deleteButton.style.marginLeft = 'auto';
     return deleteButton;
 }
@@ -47,14 +85,13 @@ function addType(typer) {
     typeBox.setAttribute('class', 'body_cont_in btn')
     typeBox.style.display = 'flex';
 
-    const typeTextH2 = document.createElement('h2');
-    typeTextH2.setAttribute('id', typer)
-    typeTextH2.textContent = typer;
-    typeBox.appendChild(typeTextH2);
-
+    const typeID = createIdArea(typer)
+    const typehrefTotodoList = createTypeText(typer)
     const ChBx = createCheckBoxer();
     const CreDBtn = createDeleteButton();
 
+    typeBox.appendChild(typeID);
+    typeBox.appendChild(typehrefTotodoList);
     typeBox.appendChild(ChBx);
     typeBox.appendChild(CreDBtn);
 
@@ -77,25 +114,9 @@ function addType(typer) {
     });
     ChBx.addEventListener('change', function() {
         if (this.checked) {
-            typeTextH2.style.textDecoration = 'line-through';
+            typehrefTotodoList.style.textDecoration = 'line-through';
         } else {
-            typeTextH2.style.textDecoration = 'None';
+            typehrefTotodoList.style.textDecoration = 'None';
         }
     })
 }
-$(document).on('submit','#todo_inputer',function(e)
-               {
-  console.log('input type to server success');
-  e.preventDefault();
-  $.ajax({
-    type:'POST',
-    url:'/',
-    data:{
-      inP_todo:$("#inP_todo").val()
-    },
-    success:function()
-    {
-      console.log('saved');
-    }
-  })
-});
