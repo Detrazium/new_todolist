@@ -135,9 +135,9 @@ footer{
     overflow-y: scroll;
     width:14em;
     height:14em;
-    background:red;
-    border: 20px solid;
-    border-radius: 20px;
+    background: #FFF1D9;
+    border: 20px solid #93A43C;
+    border-radius: 50px;
     padding-left: 10px;
     padding-right: 10px;
     margin-bottom: -100px;
